@@ -15,7 +15,7 @@ function generateCalendars(filter = false) {
             calendarEvents.push({
                 startDate: new Date(event.time).toISOString(),
                 endDate: new Date(new Date(event.time).getTime() + 3600).toDateString(),
-                summary: event.details
+                summary: event.details + '\nLocation: ' + event.location
             })
         }
         calendarContainer.append(`<div id="calendar_${i}"></div>`)
