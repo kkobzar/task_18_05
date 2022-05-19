@@ -1,11 +1,21 @@
 import events from "./events/EVENTS_API.js";
 const MONTH_COUNT = 6;
 $(document).ready(() => {
-    generateCalendars('QA')
+    generateCalendars()
+    $('.filter-link').click(e => {
+        e.preventDefault()
+        if ($(e.target).hasClass('filter-link')){
+            $('.filter-link').removeClass('active')
+            const filter = $(e.target).attr('data-filter')
+            $(e.target).addClass('active')
+            generateCalendars(filter)
+        }
+    })
 })
 
 function generateCalendars(filter = false) {
     const calendarContainer = $('#calendar-container')
+    calendarContainer.empty()
     //generate calendar blocks
     for (let i = 0; i < MONTH_COUNT; i++){
         const eventsByMonth = getEvents(new Date().setMonth(new Date().getMonth() + i), filter)
