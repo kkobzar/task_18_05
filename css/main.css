@@ -2,15 +2,40 @@
     margin: 0;
     padding: 0;
 }
-#calendar-container{
-    display: grid;
+.container{
     width: 80%;
     max-width: 1400px;
     margin: 0 auto;
+}
+#calendar-container{
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-column-gap: 20px;
 }
 #calendar-container .simple-calendar-btn{
     display: none;
+}
+#events-filters{
+    display: flex;
+    margin: 20px 0;
+}
+.filter-list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.filter-link{
+    margin: 0 20px;
+    border: 1px solid #000;
+    padding: 2px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #2f2f2f;
+}
+.filter-link:hover, .filter-link.active{
+    border-color: #6691cc;
+}
+.filter-link.active{
+    font-weight: bold;
 }
