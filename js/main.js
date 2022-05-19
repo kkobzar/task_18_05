@@ -2,6 +2,7 @@ import events from "./events/EVENTS_API.js";
 const MONTH_COUNT = 6;
 $(document).ready(() => {
     generateCalendars()
+    //generate new calendars if filter clicked
     $('.filter-link').click(e => {
         e.preventDefault()
         if ($(e.target).hasClass('filter-link')){
