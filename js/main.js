@@ -7,6 +7,9 @@ $(document).ready(() => {
         if ($(e.target).hasClass('filter-link')){
             $('.filter-link').removeClass('active')
             const filter = $(e.target).attr('data-filter')
+            if (!events.EVENT_TYPES.includes(filter)){
+                return
+            }
             $(e.target).addClass('active')
             generateCalendars(filter)
         }
@@ -22,10 +25,11 @@ function generateCalendars(filter = false) {
         let calendarEvents = []
         //format events for simpleCalendar
         for (let event of eventsByMonth){
+            const infoHtml = `<h5>${event.title}</h5><p>${event.details}</p><p>Location: ${event.location}</p>`
             calendarEvents.push({
                 startDate: new Date(event.time).toISOString(),
                 endDate: new Date(new Date(event.time).getTime() + 3600).toDateString(),
-                summary: event.details + '\nLocation: ' + event.location
+                summary: infoHtml
             })
         }
         calendarContainer.append(`<div id="calendar_${i}"></div>`)
@@ -40,11 +44,14 @@ function generateCalendars(filter = false) {
 }
 
 function getEvents(date = new Date(), filter = false) {
+    if (filter && !events.EVENT_TYPES.includes(filter)){
+        return false;
+    }
     if (date instanceof Date){
-        return events.filter(i => {
+        return events.events.filter(i => {
             return new Date(i.time).getMonth() === date.getMonth() && filter ? i.type === filter : true
         })
     }else {
-        return events.filter(i => new Date(i.time).getMonth() === new Date(date).getMonth() && filter ? i.type === filter : true)
+        return events.events.filter(i => new Date(i.time).getMonth() === new Date(date).getMonth() && filter ? i.type === filter : true)
     }
 }

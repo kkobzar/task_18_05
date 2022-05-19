@@ -1,3 +1,5 @@
+const EVENT_TYPES = ['meeting', 'QA', 'conference', 'webinar']
+
 const events = [
     {
         id: 0,
@@ -193,4 +195,4 @@ const events = [
     }
 
 ]
-export default events
+export default {events, EVENT_TYPES}

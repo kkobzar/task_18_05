@@ -39,3 +39,9 @@
 .filter-link.active{
     font-weight: bold;
 }
+.event-summary > h5{
+    font-size: 1.5rem;
+}
+.event-summary > p{
+    font-weight: normal;
+}
