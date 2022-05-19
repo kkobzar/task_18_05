@@ -6,6 +6,7 @@ $(document).ready(() => {
     for (let i = 0; i < MONTH_COUNT; i++){
         const eventsByMonth = getEventsByMonth(new Date().setMonth(new Date().getMonth() + i))
         let calendarEvents = []
+        //format events for simpleCalendar
         for (let event of eventsByMonth){
             calendarEvents.push({
                 startDate: new Date(event.time).toISOString(),
