@@ -1,10 +1,14 @@
 import events from "./events/EVENTS_API.js";
+const MONTH_COUNT = 6;
 $(document).ready(() => {
-    const MONTH_COUNT = 6;
+    generateCalendars('QA')
+})
+
+function generateCalendars(filter = false) {
     const calendarContainer = $('#calendar-container')
     //generate calendar blocks
     for (let i = 0; i < MONTH_COUNT; i++){
-        const eventsByMonth = getEventsByMonth(new Date().setMonth(new Date().getMonth() + i))
+        const eventsByMonth = getEvents(new Date().setMonth(new Date().getMonth() + i), filter)
         let calendarEvents = []
         //format events for simpleCalendar
         for (let event of eventsByMonth){
@@ -23,12 +27,14 @@ $(document).ready(() => {
             events: calendarEvents
         })
     }
-})
+}
 
-function getEventsByMonth(date = new Date()) {
+function getEvents(date = new Date(), filter = false) {
     if (date instanceof Date){
-        return events.filter(i => new Date(i.time).getMonth() === date.getMonth())
+        return events.filter(i => {
+            return new Date(i.time).getMonth() === date.getMonth() && filter ? i.type === filter : true
+        })
     }else {
-        return events.filter(i => new Date(i.time).getMonth() === new Date(date).getMonth())
+        return events.filter(i => new Date(i.time).getMonth() === new Date(date).getMonth() && filter ? i.type === filter : true)
     }
 }
