@@ -1,5 +1,8 @@
 #calendar-container{
     display: grid;
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-column-gap: 20px;
